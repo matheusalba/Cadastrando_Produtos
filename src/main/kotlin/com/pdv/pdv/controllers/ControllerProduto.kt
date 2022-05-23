@@ -5,6 +5,7 @@ import com.pdv.pdv.models.ModelProduto
 import com.pdv.pdv.requests.RequestProduto
 import com.pdv.pdv.services.ServiceProduto
 import org.springframework.web.bind.annotation.*
+import javax.persistence.Tuple
 
 @RestController
 @RequestMapping("produto")
@@ -15,6 +16,12 @@ class ControllerProduto(
     @PostMapping
     fun cadastrarProduto(@RequestBody requestProduto:RequestProduto):String{
         return serviceProduto.cadastrarProduto(requestProduto)
+    }
+
+    @GetMapping()
+    fun consultarValorDoProdutoPorPais():String{
+        return serviceProduto.valorProduto()
+
     }
 
 }
