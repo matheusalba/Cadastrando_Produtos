@@ -4,6 +4,7 @@ import com.pdv.pdv.models.ModelProduto
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
+import javax.persistence.Tuple
 
 @Repository interface RepositoryProduto : JpaRepository<ModelProduto, Long> {
     @Query("select p.pais_origem, \n" +
@@ -11,6 +12,5 @@ import org.springframework.stereotype.Repository
             "from produto p\n" +
             "group by p.pais_origem", nativeQuery = true)
     fun valorProdutoPais():List<*>
-
 
 }
