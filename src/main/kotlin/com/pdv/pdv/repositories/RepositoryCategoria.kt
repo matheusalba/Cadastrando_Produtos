@@ -8,6 +8,13 @@ import org.springframework.stereotype.Repository
 import javax.persistence.Tuple
 
 @Repository interface RepositoryCategoria : JpaRepository<ModelCategoria, Long> {
-
+    @Query("""
+            select c.nome,
+            avg(p.preco_custo)
+            from produto p
+            inner join categoria c on p.id_categoria = c.id 
+            group by c.nome
+        """, nativeQuery = true)
+    fun mediaCustoCategoria():List<*>
 
 }
